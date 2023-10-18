@@ -1,0 +1,6 @@
+leaderboard: true
+predictor_fit_args:
+  time_limit: 30
+predictor_init_args:
+  label: class
+predictor_type: tabular

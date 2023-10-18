@@ -4,6 +4,7 @@ import traceback
 from io import BytesIO
 from typing import Optional
 from uuid import UUID, uuid4
+import asyncio
 
 from codeboxapi import CodeBox  # type: ignore
 from codeboxapi.schema import CodeBoxOutput  # type: ignore
@@ -88,17 +89,24 @@ class CodeInterpreterSession:
     def start(self) -> SessionStatus:
         status = SessionStatus.from_codebox_status(self.codebox.start())
         self.agent_executor = self._agent_executor()
-        self.codebox.run(
-            f"!pip install -q {' '.join(settings.CUSTOM_PACKAGES)}",
-        )
+        
+        if(settings.CUSTOM_PACKAGES):
+            self.codebox.run(
+                f"!pip install -q {' '.join(settings.CUSTOM_PACKAGES)}",
+            )
+
         return status
 
     async def astart(self) -> SessionStatus:
         status = SessionStatus.from_codebox_status(await self.codebox.astart())
         self.agent_executor = self._agent_executor()
-        await self.codebox.arun(
-            f"!pip install -q {' '.join(settings.CUSTOM_PACKAGES)}",
-        )
+
+        if(settings.CUSTOM_PACKAGES):
+            await self.codebox.arun(
+                f"!pip install -q {' '.join(settings.CUSTOM_PACKAGES)}",
+            )
+        else:
+            await asyncio.sleep(1)
         return status
 
     def _tools(self, additional_tools: list[BaseTool]) -> list[BaseTool]:

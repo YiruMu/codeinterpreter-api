@@ -3,7 +3,7 @@ import json
 from json import JSONDecodeError
 from typing import Any, List, Optional, Sequence, Tuple, Union
 
-from langchain.agents import BaseSingleActionAgent
+from langchain.agents import BaseSingleActionAgent, BaseMultiActionAgent 
 from langchain.agents.agent import AgentOutputParser
 from langchain.agents.format_scratchpad.openai_functions import (
     format_to_openai_functions,
@@ -107,7 +107,7 @@ class OpenAIFunctionsAgentOutputParser(AgentOutputParser):
     def parse(self, text: str) -> Union[AgentAction, AgentFinish]:
         raise ValueError("Can only parse messages")
 
-
+# Yiru changing this to multi action agent 
 class OpenAIFunctionsAgent(BaseSingleActionAgent):
     """An Agent driven by OpenAIs function powered API.
 

@@ -7,7 +7,7 @@ from langchain.schema import SystemMessage
 from codeinterpreterapi.prompts import code_interpreter_system_message
 
 # .env file
-load_dotenv(dotenv_path="./.env")
+load_dotenv(dotenv_path="../.env")
 
 
 class CodeInterpreterAPISettings(BaseSettings):
@@ -40,7 +40,7 @@ class CodeInterpreterAPISettings(BaseSettings):
     POSTGRES_URL: str = "postgresql://postgres:postgres@localhost:5432/postgres"
 
     # CodeBox
-    CODEBOX_API_KEY: Optional[str] = None
+    CODEBOX_API_KEY: Optional[str] = None 
     CUSTOM_PACKAGES: list[str] = []
 
     # deprecated
