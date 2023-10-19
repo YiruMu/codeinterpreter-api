@@ -1,5 +1,5 @@
-import asyncio
 import sys
+import asyncio
 
 import streamlit as st
 from utils import get_images  # type: ignore
@@ -29,6 +29,7 @@ for uploaded_file in uploaded_files:
 button_pressed = st.button("Run code interpreter api")
 
 # This will display the images only when the button is pressed
+
 if button_pressed and input_text != "":
     if sys.platform == "win32":
         loop = asyncio.ProactorEventLoop()

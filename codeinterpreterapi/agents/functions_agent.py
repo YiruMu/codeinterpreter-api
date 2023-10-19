@@ -107,7 +107,7 @@ class OpenAIFunctionsAgentOutputParser(AgentOutputParser):
     def parse(self, text: str) -> Union[AgentAction, AgentFinish]:
         raise ValueError("Can only parse messages")
 
-# Yiru changing this to multi action agent 
+# Yiru: keep as single agent or multi agent? 
 class OpenAIFunctionsAgent(BaseSingleActionAgent):
     """An Agent driven by OpenAIs function powered API.
 
